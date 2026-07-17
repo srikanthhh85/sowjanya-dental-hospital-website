@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultation Booking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        @media (max-width: 640px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+    </style>
+</head>
+<body class="bg-gray-100 relative">
+    <div id="dental-background" class="absolute inset-0 z-0 pointer-events-none">
+        <!-- SVG Background Here -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMaxYMax slice" class="absolute inset-0 w-full h-full opacity-20">
+            <defs>
+                <pattern id="dental-icons-pattern" x="0" y="0" width="400" height="400" patternUnits="userSpaceOnUse">
+                    <!-- Tooth Icon -->
+                    <path d="M100 50 
+                             Q130 80, 100 110 
+                             Q70 80, 100 50" 
+                          fill="none" stroke="#87CEFA" stroke-width="3"/>
+        
+                    <!-- Toothbrush and Toothpaste -->
+                    <path d="M200 100 L230 70 
+                             Q250 90, 230 110 Z" 
+                          fill="none" stroke="#87CEFA" stroke-width="2"/>
+                    <circle cx="220" cy="80" r="3" fill="#87CEFA"/>
+        
+                    <!-- Dental Floss -->
+                    <path d="M50 200 
+                             Q75 180, 100 200 
+                             Q125 220, 50 200" 
+                          fill="none" stroke="#87CEFA" stroke-width="1" stroke-dasharray="3,3"/>
+        
+                    <!-- Smiling Mouth -->
+                    <path d="M300 150 
+                             Q325 170, 350 150" 
+                          fill="none" stroke="#87CEFA" stroke-width="2" stroke-linecap="round"/>
+        
+                    <!-- Dental Tools (Mirror and Probe) -->
+                    <circle cx="150" cy="250" r="15" fill="none" stroke="#87CEFA" stroke-width="2"/>
+                    <line x1="135" y1="250" x2="165" y2="250" stroke="#87CEFA" stroke-width="1"/>
+        
+                    <!-- Braces -->
+                    <path d="M250 200 
+                             L260 190 
+                             L270 200 
+                             L280 190" 
+                          fill="none" stroke="#87CEFA" stroke-width="2"/>
+        
+                    <!-- Molar Icon -->
+                    <rect x="50" y="300" width="40" height="30" 
+                          fill="none" stroke="#87CEFA" stroke-width="2"/>
+        
+                    <!-- Tooth Fairy (Simplified) -->
+                    <path d="M350 300 
+                             Q370 280, 390 300 
+                             L370 320 Z" 
+                          fill="none" stroke="#87CEFA" stroke-width="2"/>
+        
+                    <!-- X-ray Style Tooth -->
+                    <path d="M150 350 
+                             Q170 330, 190 350 
+                             Q210 370, 230 350" 
+                          fill="none" stroke="#87CEFA" stroke-width="1" stroke-dasharray="4,4"/>
+        
+                    <!-- Healthy vs Cavity Tooth -->
+                    <path d="M300 350 
+                             Q320 330, 340 350 
+                             Q360 370, 380 350" 
+                          fill="none" stroke="#87CEFA" stroke-width="2"/>
+                    <circle cx="340" cy="360" r="3" fill="#87CEFA"/>
+                </pattern>
+            </defs>
+            <rect x="0" y="0" width="1440" height="900" fill="url(#dental-icons-pattern)"/>
+        </svg>
+    </div>
+    <div class="min-h-screen flex items-center justify-center p-4 relative z-10">
+        <div id="appointmentModal" class="w-full max-w-2xl bg-white shadow-2xl rounded-xl overflow-hidden">
+            <div class="p-6 bg-blue-900 text-white">
+                <h3 class="text-3xl font-bold text-center">Book Your Consultation</h3>
+            </div>
+            <div class="p-6">
+                <form id="consultationForm" class="space-y-6">
+                    <div class="form-grid">
+                        <div>
+                            <label class="block mb-2 text-sm font-medium text-gray-700">Full Name</label>
+                            <input name="fullName" type="text" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300">
+                        </div>
+                        <div>
+                            <label class="block mb-2 text-sm font-medium text-gray-700">Phone Number</label>
+                            <input name="phone" type="tel" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300">
+                        </div>
+                        <div>
+                            <label class="block mb-2 text-sm font-medium text-gray-700">Email Address</label>
+                            <input name="email" type="email" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300">
+                        </div>
+                        <div>
+                            <label class="block mb-2 text-sm font-medium text-gray-700">Preferred Service</label>
+                            <select name="service" 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300">
+                                <option>General Dentistry</option>
+                                <option>Preventive Care</option>
+                                <option>Orthodontics</option>
+                                <option>Cosmetic Dentistry</option>
+                                <option>Prosthodontics</option>
+                                <option>Periodontics</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block mb-2 text-sm font-medium text-gray-700">Preferred Date</label>
+                            <input name="appointmentDate" type="date" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300">
+                        </div>
+                    </div>
+                    <div class="flex justify-center space-x-4 mt-6">
+                        <button type="submit" 
+                            class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            Book Appointment
+                        </button>
+                        <button type="button" onclick="window.location.href='indexx.html'" 
+                        class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+const MY_WHATSAPP_NUMBER = '+91XXXXXXXXXX'; // Replace with your WhatsApp number including country code
+
+document.getElementById('consultationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    
+    const fullName = e.target.fullName.value;
+    const phone = e.target.phone.value;
+    const email = e.target.email.value;
+    const service = e.target.service.value;
+    const appointmentDate = e.target.appointmentDate.value;
+
+    
+    const message = `Consultation Booking Details:
+Name: ${fullName}
+Phone: ${phone}
+Email: ${email}
+Service: ${service}
+Date: ${appointmentDate}`;
+
+    
+    const whatsappUrl = `https://wa.me/${MY_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+});
+</script>
+</html>
